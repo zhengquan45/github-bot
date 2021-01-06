@@ -1,12 +1,15 @@
 package org.zhq.bot.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
+import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.client.RestTemplate
+import org.springframework.web.client.postForObject
 import org.zhq.bot.model.PullRequestEvent
 import javax.servlet.http.HttpServletRequest
 
@@ -26,7 +29,7 @@ class BotController {
         val event = request.getHeader("X-Github-Event")
         if (event == "pull_request") {
             val pullRequestEvent = objectMapper.readValue(body, PullRequestEvent::class.java)
-            if (pullRequestEvent.action == "open") {
+            if ("opened" == pullRequestEvent.action) {
                 labelPullRequest(pullRequestEvent.repository.owner.login,
                         pullRequestEvent.repository.name, pullRequestEvent.number, "waiting-for-review")
             }
@@ -37,11 +40,13 @@ class BotController {
     }
 
     fun labelPullRequest(owner: String, repo: String, issueNumber: Int, label: String) {
-        val url = "http://api.github.com/repos/$owner/$repo/issues/$issueNumber/labels"
+        val url = "https://api.github.com/repos/$owner/$repo/issues/$issueNumber/labels"
         val httpHeaders = HttpHeaders()
-        httpHeaders.put("Accept", listOf("application/vnd.github.v3+json"))
+        httpHeaders["Accept"] = "application/vnd.github.v3+json"
+        httpHeaders["Authorization"] = "token ${System.getenv("GITHUB_TOKEN")}"
         val params = mapOf("labels" to listOf(label))
         val httpEntity = HttpEntity(params, httpHeaders)
-        restTemplate.postForEntity(url, httpEntity, Unit.javaClass)
+        val result = restTemplate.postForObject(url, httpEntity,String::class.java)
+        println(result)
     }
 }
