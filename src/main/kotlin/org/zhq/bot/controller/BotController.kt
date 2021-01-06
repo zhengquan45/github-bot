@@ -46,7 +46,7 @@ class BotController {
         val url = "https://api.github.com/repos/$owner/$repo/issues/$issueNumber/labels"
         val httpHeaders = HttpHeaders()
         httpHeaders["Accept"] = "application/vnd.github.v3+json"
-        httpHeaders["Authorization"] = "6503331b11a06430adcc235a8a8d73837009041d"
+        httpHeaders["Authorization"] = "token ${System.getenv("GITHUB_TOKEN")}"
         val params = mapOf("labels" to listOf(label))
         val httpEntity = HttpEntity(params, httpHeaders)
         val result = restTemplate.postForObject(url, httpEntity,String::class.java);
