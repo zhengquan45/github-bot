@@ -26,15 +26,18 @@ class BotController {
 
     @PostMapping("/bot")
     fun bot(@RequestBody body: String, request: HttpServletRequest): String {
-        val event = request.getHeader("X-Github-Event")
-        if (event == "pull_request") {
-            val pullRequestEvent = objectMapper.readValue(body, PullRequestEvent::class.java)
-            if ("opened" == pullRequestEvent.action) {
-                labelPullRequest(pullRequestEvent.repository.owner.login,
-                        pullRequestEvent.repository.name, pullRequestEvent.number, "waiting-for-review")
+        println("body $body")
+        when (request.getHeader("X-Github-Event")) {
+            "pull_request" -> {
+                val pullRequestEvent = objectMapper.readValue(body, PullRequestEvent::class.java)
+                if ("opened" == pullRequestEvent.action) {
+                    labelPullRequest(pullRequestEvent.repository.owner.login,
+                            pullRequestEvent.repository.name, pullRequestEvent.number, "waiting-for-review")
+                }
             }
-        } else {
-            println("丢失不关心的事件");
+            else -> {
+                println("丢失不关心的事件");
+            }
         }
         return "OK"
     }
@@ -43,10 +46,10 @@ class BotController {
         val url = "https://api.github.com/repos/$owner/$repo/issues/$issueNumber/labels"
         val httpHeaders = HttpHeaders()
         httpHeaders["Accept"] = "application/vnd.github.v3+json"
-        httpHeaders["Authorization"] = "token ${System.getenv("GITHUB_TOKEN")}"
+        httpHeaders["Authorization"] = "6503331b11a06430adcc235a8a8d73837009041d"
         val params = mapOf("labels" to listOf(label))
         val httpEntity = HttpEntity(params, httpHeaders)
-        val result = restTemplate.postForObject(url, httpEntity,String::class.java)
+        val result = restTemplate.postForObject(url, httpEntity,String::class.java);
         println(result)
     }
 }
