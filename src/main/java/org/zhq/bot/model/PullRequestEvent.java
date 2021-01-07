@@ -1,14 +1,17 @@
 package org.zhq.bot.model;
 
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
 public class PullRequestEvent {
 
+
     private String action;
     private Integer number;
     private PullRequest pull_request;
+    private Label label;
     private Repository repository;
     private Sender sender;
 
@@ -34,6 +37,14 @@ public class PullRequestEvent {
 
     public void setPull_request(PullRequest pull_request) {
         this.pull_request = pull_request;
+    }
+
+    public Label getLabel() {
+        return label;
+    }
+
+    public void setLabel(Label label) {
+        this.label = label;
     }
 
     public Repository getRepository() {
@@ -99,7 +110,7 @@ public class PullRequestEvent {
         private List<?> assignees;
         private List<?> requested_reviewers;
         private List<?> requested_teams;
-        private List<?> labels;
+        private List<Labels> labels;
 
         public String getUrl() {
             return url;
@@ -469,11 +480,11 @@ public class PullRequestEvent {
             this.requested_teams = requested_teams;
         }
 
-        public List<?> getLabels() {
+        public List<Labels> getLabels() {
             return labels;
         }
 
-        public void setLabels(List<?> labels) {
+        public void setLabels(List<Labels> labels) {
             this.labels = labels;
         }
 
@@ -2961,6 +2972,140 @@ public class PullRequestEvent {
                     this.href = href;
                 }
             }
+        }
+
+        public static class Labels {
+            private Long id;
+            private String node_id;
+            private String url;
+            private String name;
+            private String color;
+            @JsonProperty("default")
+            private Boolean defaultX;
+            private Object description;
+
+            public Long getId() {
+                return id;
+            }
+
+            public void setId(Long id) {
+                this.id = id;
+            }
+
+            public String getNode_id() {
+                return node_id;
+            }
+
+            public void setNode_id(String node_id) {
+                this.node_id = node_id;
+            }
+
+            public String getUrl() {
+                return url;
+            }
+
+            public void setUrl(String url) {
+                this.url = url;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public String getColor() {
+                return color;
+            }
+
+            public void setColor(String color) {
+                this.color = color;
+            }
+
+            public Boolean isDefaultX() {
+                return defaultX;
+            }
+
+            public void setDefaultX(Boolean defaultX) {
+                this.defaultX = defaultX;
+            }
+
+            public Object getDescription() {
+                return description;
+            }
+
+            public void setDescription(Object description) {
+                this.description = description;
+            }
+        }
+    }
+
+    public static class Label {
+        private Long id;
+        private String node_id;
+        private String url;
+        private String name;
+        private String color;
+        @JsonProperty("default")
+        private Boolean defaultX;
+        private Object description;
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+            this.id = id;
+        }
+
+        public String getNode_id() {
+            return node_id;
+        }
+
+        public void setNode_id(String node_id) {
+            this.node_id = node_id;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getColor() {
+            return color;
+        }
+
+        public void setColor(String color) {
+            this.color = color;
+        }
+
+        public Boolean isDefaultX() {
+            return defaultX;
+        }
+
+        public void setDefaultX(Boolean defaultX) {
+            this.defaultX = defaultX;
+        }
+
+        public Object getDescription() {
+            return description;
+        }
+
+        public void setDescription(Object description) {
+            this.description = description;
         }
     }
 
