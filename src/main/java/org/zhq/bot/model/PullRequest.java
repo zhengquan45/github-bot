@@ -7,7 +7,7 @@ import java.util.List;
 public class PullRequest {
 
     private String url;
-    private Long id;
+    private Integer id;
     private String node_id;
     private String html_url;
     private String diff_url;
@@ -62,11 +62,11 @@ public class PullRequest {
         this.url = url;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -432,7 +432,7 @@ public class PullRequest {
 
     public static class User {
         private String login;
-        private Long id;
+        private Integer id;
         private String node_id;
         private String avatar_url;
         private String gravatar_id;
@@ -458,11 +458,11 @@ public class PullRequest {
             this.login = login;
         }
 
-        public Long getId() {
+        public Integer getId() {
             return id;
         }
 
-        public void setId(Long id) {
+        public void setId(Integer id) {
             this.id = id;
         }
 
@@ -599,7 +599,7 @@ public class PullRequest {
         private String url;
         private String html_url;
         private String labels_url;
-        private Long id;
+        private Integer id;
         private String node_id;
         private Integer number;
         private String state;
@@ -637,11 +637,11 @@ public class PullRequest {
             this.labels_url = labels_url;
         }
 
-        public Long getId() {
+        public Integer getId() {
             return id;
         }
 
-        public void setId(Long id) {
+        public void setId(Integer id) {
             this.id = id;
         }
 
@@ -743,7 +743,7 @@ public class PullRequest {
 
         public static class Creator {
             private String login;
-            private Long id;
+            private Integer id;
             private String node_id;
             private String avatar_url;
             private String gravatar_id;
@@ -769,11 +769,11 @@ public class PullRequest {
                 this.login = login;
             }
 
-            public Long getId() {
+            public Integer getId() {
                 return id;
             }
 
-            public void setId(Long id) {
+            public void setId(Integer id) {
                 this.id = id;
             }
 
@@ -909,7 +909,7 @@ public class PullRequest {
 
     public static class Assignee {
         private String login;
-        private Long id;
+        private Integer id;
         private String node_id;
         private String avatar_url;
         private String gravatar_id;
@@ -935,11 +935,11 @@ public class PullRequest {
             this.login = login;
         }
 
-        public Long getId() {
+        public Integer getId() {
             return id;
         }
 
-        public void setId(Long id) {
+        public void setId(Integer id) {
             this.id = id;
         }
 
@@ -1121,7 +1121,7 @@ public class PullRequest {
 
         public static class User {
             private String login;
-            private Long id;
+            private Integer id;
             private String node_id;
             private String avatar_url;
             private String gravatar_id;
@@ -1147,11 +1147,11 @@ public class PullRequest {
                 this.login = login;
             }
 
-            public Long getId() {
+            public Integer getId() {
                 return id;
             }
 
-            public void setId(Long id) {
+            public void setId(Integer id) {
                 this.id = id;
             }
 
@@ -1285,7 +1285,7 @@ public class PullRequest {
         }
 
         public static class Repo {
-            private Long id;
+            private Integer id;
             private String node_id;
             private String name;
             private String full_name;
@@ -1366,11 +1366,11 @@ public class PullRequest {
             private Integer watchers;
             private List<String> topics;
 
-            public Long getId() {
+            public Integer getId() {
                 return id;
             }
 
-            public void setId(Long id) {
+            public void setId(Integer id) {
                 this.id = id;
             }
 
@@ -3751,7 +3751,7 @@ public class PullRequest {
     }
 
     public static class Labels {
-        private Long id;
+        private Integer id;
         private String node_id;
         private String url;
         private String name;
@@ -3760,11 +3760,11 @@ public class PullRequest {
         @JsonProperty("default")
         private Boolean defaultX;
 
-        public Long getId() {
+        public Integer getId() {
             return id;
         }
 
-        public void setId(Long id) {
+        public void setId(Integer id) {
             this.id = id;
         }
 
@@ -3819,7 +3819,7 @@ public class PullRequest {
 
     public static class Assignees {
         private String login;
-        private Long id;
+        private Integer id;
         private String node_id;
         private String avatar_url;
         private String gravatar_id;
@@ -3845,11 +3845,11 @@ public class PullRequest {
             this.login = login;
         }
 
-        public Long getId() {
+        public Integer getId() {
             return id;
         }
 
-        public void setId(Long id) {
+        public void setId(Integer id) {
             this.id = id;
         }
 
@@ -3984,7 +3984,7 @@ public class PullRequest {
 
     public static class RequestedReviewers {
         private String login;
-        private Long id;
+        private Integer id;
         private String node_id;
         private String avatar_url;
         private String gravatar_id;
@@ -4010,11 +4010,11 @@ public class PullRequest {
             this.login = login;
         }
 
-        public Long getId() {
+        public Integer getId() {
             return id;
         }
 
-        public void setId(Long id) {
+        public void setId(Integer id) {
             this.id = id;
         }
 
@@ -4148,7 +4148,7 @@ public class PullRequest {
     }
 
     public static class RequestedTeams {
-        private Long id;
+        private Integer id;
         private String node_id;
         private String url;
         private String html_url;
@@ -4160,11 +4160,11 @@ public class PullRequest {
         private String members_url;
         private String repositories_url;
 
-        public Long getId() {
+        public Integer getId() {
             return id;
         }
 
-        public void setId(Long id) {
+        public void setId(Integer id) {
             this.id = id;
         }
 
