@@ -29,6 +29,9 @@ class BotController {
 
     @PostMapping("/bot")
     fun bot(@RequestBody body: String, request: HttpServletRequest): String {
+        println("body")
+        println()
+        println(body)
         when (request.getHeader("X-Github-Event")) {
             "pull_request" -> processPullRequestEvent(body)
             "issue_comment" -> processIssueCommentEvent(body)
