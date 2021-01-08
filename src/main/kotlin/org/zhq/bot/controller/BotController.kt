@@ -29,7 +29,6 @@ class BotController {
 
     @PostMapping("/bot")
     fun bot(@RequestBody body: String, request: HttpServletRequest): String {
-        println("body $body")
         when (request.getHeader("X-Github-Event")) {
             "pull_request" -> processPullRequestEvent(body)
             "issue_comment" -> processIssueCommentEvent(body)
@@ -54,7 +53,7 @@ class BotController {
                     headCommit
             )
             if(pass){
-
+                println("CI通过,自动合并")
             }else{
                 //否则CI没有通过.等通过了我会自动合并,请首长放心
                 publishIssueComment(
@@ -114,8 +113,7 @@ class BotController {
         httpHeaders["Authorization"] = "token $githubToken"
         val params = mapOf("labels" to listOf(label))
         val httpEntity = HttpEntity(params, httpHeaders)
-        val result = restTemplate.postForObject<String>(url, httpEntity)
-        println(result)
+        restTemplate.postForObject<String>(url, httpEntity)
     }
 
     fun publishIssueComment(owner: String, repo: String, number: Int, body: String){
