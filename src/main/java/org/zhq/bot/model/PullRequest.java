@@ -3751,7 +3751,7 @@ public class PullRequest {
     }
 
     public static class Labels {
-        private Integer id;
+        private Long id;
         private String node_id;
         private String url;
         private String name;
@@ -3760,11 +3760,11 @@ public class PullRequest {
         @JsonProperty("default")
         private Boolean defaultX;
 
-        public Integer getId() {
+        public Long getId() {
             return id;
         }
 
-        public void setId(Integer id) {
+        public void setId(Long id) {
             this.id = id;
         }
 
