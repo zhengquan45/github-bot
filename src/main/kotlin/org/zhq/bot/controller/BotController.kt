@@ -29,13 +29,18 @@ class BotController {
 
     @PostMapping("/bot")
     fun bot(@RequestBody body: String, request: HttpServletRequest): String {
-        println("body")
-        println()
-        println(body)
-        when (request.getHeader("X-Github-Event")) {
-            "pull_request" -> processPullRequestEvent(body)
-            "issue_comment" -> processIssueCommentEvent(body)
-            else -> println("丢失不关心的事件")
+        try {
+            when (request.getHeader("X-Github-Event")) {
+                "pull_request" -> processPullRequestEvent(body)
+                "issue_comment" -> processIssueCommentEvent(body)
+                else -> println("丢失不关心的事件")
+            }
+        } catch (e: Exception) {
+            print(e)
+            println()
+            print("body")
+            println()
+            print(body)
         }
         return "OK"
     }
